@@ -25,16 +25,17 @@ app.get('/api/counter', (req, res) => {
 
 // Endpoint para aumentar o contador
 app.post('/api/counter/increase', (req, res) => {
-  const counter = db.update('counter', n => n + 1).write();
+  db.update('counter', n => n + 1).write();
+  const counter = db.get('counter').value();
   res.json({ counter });
 });
 
 // Endpoint para diminuir o contador
 app.post('/api/counter/decrease', (req, res) => {
-  const counter = db.update('counter', n => n - 1).write();
+  db.update('counter', n => n - 1).write();
+  const counter = db.get('counter').value();
   res.json({ counter });
 });
-
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
