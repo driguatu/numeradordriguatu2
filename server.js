@@ -14,7 +14,7 @@ const db = low(adapter);
 db.defaults({ counter: 0 }).write();
 
 // Middleware para servir arquivos estáticos da pasta "public"
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname));
 app.use(express.json());
 
 // Endpoint para obter o valor atual do contador
